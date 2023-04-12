@@ -18,9 +18,15 @@ const convertInput = () => {
 
 const setSectionGrid = () => {
   // set pokemonCard container to display of "grid"
-  section.style.display = "grid";
-  section.style.gap = "5px";
-  section.style.gridTemplateColumns = "repeat(4, minmax(290px, 1fr) )";
+  let w = window.innerWidth;
+  if (w === 375) {
+    section.style.display = "flex";
+    section.style.flexDirection = "column";
+  } else {
+    section.style.display = "grid";
+    section.style.gap = "5px";
+    section.style.gridTemplateColumns = "repeat(4, minmax(290px, 1fr) )";
+  }
 };
 
 const displayCards = () => {
