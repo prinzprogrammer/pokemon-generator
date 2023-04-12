@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Tilt Warp", cursive;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
+  padding: 0 50px;
+  margin-bottom: 30px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  margin: 5px;
+}
+.nav-links a:hover {
+  text-decoration: underline;
+}
+.nav-links .push {
+  margin-right: auto;
+}
+.nav-links .user-feature {
+  color: rgba(0, 0, 0, 0.1);
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+}
+main h1 {
+  text-align: center;
+}
+
+.grid-wrapper .pokemon-card {
+  background-color: #ee8130;
+  box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.grid-wrapper .pokemon-card .image-container {
+  height: 300px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid-wrapper .pokemon-card .image-container .pokemon-img {
+  height: 93%;
+  margin-bottom: 5px;
+}
+.grid-wrapper .pokemon-card .pokemon-info ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.grid-wrapper .pokemon-card .pokemon-info ul li {
+  list-style-type: none;
+}
+.grid-wrapper .pokemon-card .pokemon-info ul li h1 {
+  margin-bottom: 2px;
+}
+.grid-wrapper .pokemon-card .pokemon-info ul li p {
+  color: black;
+  margin-bottom: 8px;
+}
+
+.btn-holder {
+  text-align: center;
+}
+.btn-holder button {
+  width: 100px;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 15px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+.btn-holder button:hover {
+  background-color: rgb(63, 63, 63);
+}
+.btn-holder #generate-input {
+  text-align: center;
+  font-size: 14px;
+  width: 75px;
+  padding: 5px 8px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.btn-holder #generate-input:focus {
+  outline: 1px solid blue;
+}
+.btn-holder input[type=number]::-webkit-inner-spin-button,
+.btn-holder input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+footer p {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.1);
+}
+footer p:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=style.css.map */

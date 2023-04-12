@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Generator</title>
+    <link rel="stylesheet" href="Style/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="nav-links">
+      <a class="push" href="">Home</a>
+      <a href="">Pokemon Cards</a>
+      <a href="">About</a>
+      <a class="user-feature" href="">Sign-In/ Log-In</a>
+    </nav>
+
+    <main>
+      <div class="btn-holder">
+        <input
+          id="generate-input"
+          type="number"
+          placeholder="Quantity"
+          required
+        />
+        <button id="generate-btn" type="submit">Generate</button>
+      </div>
+
+      <!-- <h1>Your Pokémon is?</h1> -->
+      <section class="grid-wrapper">
+        <div class="pokemon-card">
+          <div class="image-container">
+            <img class="pokemon-img" src="Images/6.png" alt="" />
+          </div>
+          <div class="pokemon-info">
+            <ul>
+              <li>
+                <h1 class="pokemon-name">Charizard</h1>
+              </li>
+              <li>
+                <p>
+                  <span class="pokemon-type">Fire</span>
+                  <span class="pokemon-type2">Flying</span>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>Made with ♡ by Programmer73</p>
+    </footer>
+    <script type="module" src="cardGenerator.js"></script>
+    <script type="module" src="pokemonCards.js"></script>
+  </body>
+</html>
