@@ -1,17 +1,17 @@
+// to generate using input and generate button
 const generateInput = document.querySelector("#generate-input");
 const generateBtn = document.querySelector("#generate-btn");
+const generateBtnInputHolder = document.querySelector(".btn-holder");
+// to edit the content inside section
 const section = document.querySelector("section");
-const sectionChildren = document.querySelector("section > div");
+const sectionChildren = document.querySelectorAll("section pokemon-card");
+// to edit the main content(pokemonCard)
 const pokemonCardDefault = document.querySelector(".pokemon-card");
+// to display the cards w/ pagination
+const pokemonCardsNavLink = document.querySelector(".pokemon-cards-nav-link");
 
-generateInput.addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    displayCards();
-  }
-});
-
-// convert generateInput.value(x) to number
 const convertInput = () => {
+  // convert generateInput.value(x) to number
   const amount = Number(generateInput.value);
   return amount;
 };
@@ -29,30 +29,27 @@ const setSectionGrid = () => {
   }
 };
 
-const displayCards = () => {
+const displayRandomPokemonCards = () => {
   if (generateInput.value > 0 && generateInput.value < 1000) {
     // set pokemonCard container to display of "grid"
+    section.innerHTML = "";
     setSectionGrid();
-    // console.log(sectionChildren);
-    // remove default(Charizard)pokemonCard
-    pokemonCardDefault.remove();
-    sectionChildren.remove();
     for (let i = 0; i < convertInput(); i++) {
-      generateCard();
-      console.log(sectionChildren);
+      generateRandomPokemonCards();
     }
+    generateInput.value = "";
+    console.log(section.innerHTML);
   } else {
     generateInput.value = "";
     alert("Enter a number between 1 and 1000");
   }
-  generateInput.value = "";
 };
 
-const generateCard = () => {
+const generateRandomPokemonCards = () => {
   // create pokemon-card div
   const pokemonCard = document.createElement("div");
   pokemonCard.classList.add("pokemon-card");
-  section.append(pokemonCard);
+  section.appendChild(pokemonCard);
   // create image-container div
   const imageContainer = document.createElement("div");
   imageContainer.classList.add("image-container");
@@ -124,12 +121,12 @@ const generateCard = () => {
 
   const changePokemonCardBgColor = (pokemonType, arrayCount) => {
     if (arrayCount.length > 1) {
-      console.log("arrayCount.length > 1");
+      console.log("1-Type");
       pokemonCard.style.backgroundImage = `linear-gradient(to bottom, #000000, ${changeColor(
         pokemonType
       )})`;
     } else {
-      console.log("else");
+      console.log("2-Type");
       pokemonCard.style.backgroundColor = `${changeColor(pokemonType)}`;
     }
   };
@@ -207,6 +204,110 @@ const upperCase = (string) => {
   return upperCasedString;
 };
 
-generateBtn.addEventListener("click", displayCards);
+const displayPokemonCards = () => {
+  section.innerHTML = "";
+  for (let index = 1; index < 30; index++) {
+    generateBtnInputHolder.remove();
+    setSectionGrid();
+    generatePokemonCards(index);
+    if (index === 20) {
+      break;
+    }
+  }
+  console.log(section);
+};
+
+const generatePokemonCards = (count) => {
+  // create pokemon-card div
+  const pokemonCard = document.createElement("div");
+  pokemonCard.classList.add("pokemon-card");
+  section.appendChild(pokemonCard);
+  // create image-container div
+  const imageContainer = document.createElement("div");
+  imageContainer.classList.add("image-container");
+  pokemonCard.appendChild(imageContainer);
+  // create pokemon-img img
+  const pokemonImg = document.createElement("img");
+  pokemonImg.classList.add("pokemon-img");
+  pokemonImg.src = "/Images/6.png";
+  imageContainer.appendChild(pokemonImg);
+  // create pokemon-info div
+  const pokemonInfo = document.createElement("div");
+  pokemonInfo.classList.add("pokemon-info");
+  pokemonCard.appendChild(pokemonInfo);
+  // create pokemon-info ul
+  const pokemonInfoUl = document.createElement("ul");
+  pokemonInfo.appendChild(pokemonInfoUl);
+  // create pokemon-info li
+  const li = document.createElement("li");
+  pokemonInfoUl.appendChild(li);
+  // create pokemon-name h1
+  const pokemonName = document.createElement("h1");
+  pokemonName.classList.add("pokemon-name");
+  pokemonName.textContent = "Charizard";
+  li.appendChild(pokemonName);
+  // create pokemon-info li
+  const li2 = document.createElement("li");
+  pokemonInfoUl.appendChild(li2);
+  // create pokemon-info pi
+  const p = document.createElement("p");
+  li2.appendChild(p);
+  // create pokemon type span
+  const pokemonType = document.createElement("span");
+  pokemonType.classList.add("pokemon-type");
+  pokemonType.textContent = "Fire";
+  p.appendChild(pokemonType);
+  // create pokemon type2 span
+  const pokemonType2 = document.createElement("span");
+  pokemonType2.classList.add("pokemon-type2");
+  pokemonType2.textContent = "Flying";
+  p.appendChild(pokemonType2);
+  // get pokemon
+  fetch(`https://pokeapi.co/api/v2/pokemon/${count}`)
+    .then((response) => response.json())
+    .then((pokemonObject) => {
+      const name = pokemonObject.name;
+      console.log("Name:", name);
+      pokemonName.textContent = upperCase(name);
+      const img = pokemonObject.sprites.other["official-artwork"].front_default;
+      console.log(img);
+      pokemonImg.src = img;
+      const typeArray = pokemonObject.types;
+      const type = pokemonObject.types[0].type.name;
+      changePokemonCardBgColor(type, typeArray);
+      if (typeArray.length > 1) {
+        console.log(typeArray);
+        console.log("Type:", type);
+        pokemonType.textContent = upperCase(`${type} `);
+        const type2 = pokemonObject.types[1].type.name;
+        console.log("Type2:", type2);
+        pokemonType2.textContent = upperCase(type2);
+      } else {
+        pokemonType.textContent = upperCase(type);
+        pokemonType2.textContent = "";
+      }
+    });
+  const changePokemonCardBgColor = (pokemonType, arrayCount) => {
+    if (arrayCount.length > 1) {
+      console.log("1-Type");
+      pokemonCard.style.backgroundImage = `linear-gradient(to bottom, #000000, ${changeColor(
+        pokemonType
+      )})`;
+    } else {
+      console.log("2-Type");
+      pokemonCard.style.backgroundColor = `${changeColor(pokemonType)}`;
+    }
+  };
+};
+
+generateInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    displayRandomPokemonCards();
+  }
+});
+
+generateBtn.addEventListener("click", displayRandomPokemonCards);
+pokemonCardsNavLink.addEventListener("click", displayPokemonCards);
 
 //Create a pokemonCard section - that display the first 100 cards. and has pagination ang has a load more button
+// navigation bar - <a href="">Pokemon Cards</a> => when clicked it renders the Html for the link
