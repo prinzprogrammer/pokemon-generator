@@ -1,5 +1,5 @@
 $pokemonDefaultCardBgColor: #ee8130;
-$pokemonDefaultCardBoxShadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.5);
+$pokemonDefaultCardBoxShadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.6);
 
 html {
   height: 100%;
@@ -25,7 +25,6 @@ body {
   height: 50px;
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
   padding: 0 50px;
-  margin-bottom: 30px;
   a {
     text-decoration: none;
     color: black;
@@ -49,7 +48,7 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 50px;
+  padding: 50px 0px;
 }
 
 .grid-wrapper {
@@ -66,6 +65,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: all 0.2s ease-in-out; /* Animation */
     .image-container {
       height: 300px;
       width: 200px;
@@ -96,6 +96,10 @@ main {
         }
       }
     }
+  }
+  .pokemon-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 1);
   }
 }
 

@@ -22,7 +22,6 @@ body {
   height: 50px;
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
   padding: 0 50px;
-  margin-bottom: 30px;
 }
 .nav-links a {
   text-decoration: none;
@@ -46,18 +45,19 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 50px;
+  padding: 50px 0px;
 }
 
 .grid-wrapper .pokemon-card {
   background-color: #ee8130;
-  box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.6);
   border-radius: 3px;
   margin: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.2s ease-in-out; /* Animation */
 }
 .grid-wrapper .pokemon-card .image-container {
   height: 300px;
@@ -85,6 +85,10 @@ main {
 .grid-wrapper .pokemon-card .pokemon-info ul li p {
   color: black;
   margin-bottom: 8px;
+}
+.grid-wrapper .pokemon-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 1px 2px rgb(0, 0, 0);
 }
 
 .btn-holder {

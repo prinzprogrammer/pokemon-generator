@@ -4,11 +4,12 @@ const generateBtn = document.querySelector("#generate-btn");
 const generateBtnInputHolder = document.querySelector(".btn-holder");
 // to edit the content inside section
 const section = document.querySelector("section");
-const sectionChildren = document.querySelectorAll("section pokemon-card");
 // to edit the main content(pokemonCard)
 const pokemonCardDefault = document.querySelector(".pokemon-card");
 // to display the cards w/ pagination
 const pokemonCardsNavLink = document.querySelector(".pokemon-cards-nav-link");
+// to display about section
+const aboutNavLink = document.querySelector(".about-nav-link");
 
 const convertInput = () => {
   // convert generateInput.value(x) to number
@@ -16,7 +17,7 @@ const convertInput = () => {
   return amount;
 };
 
-const setSectionGrid = () => {
+const setSectionGrid = (itemCount) => {
   // set pokemonCard container to display of "grid"
   let w = window.innerWidth;
   if (w === 375) {
@@ -25,7 +26,7 @@ const setSectionGrid = () => {
   } else {
     section.style.display = "grid";
     section.style.gap = "5px";
-    section.style.gridTemplateColumns = "repeat(4, minmax(290px, 1fr) )";
+    section.style.gridTemplateColumns = `repeat(${itemCount}, minmax(290px, 1fr) )`;
   }
 };
 
@@ -33,7 +34,7 @@ const displayRandomPokemonCards = () => {
   if (generateInput.value > 0 && generateInput.value < 1000) {
     // set pokemonCard container to display of "grid"
     section.innerHTML = "";
-    setSectionGrid();
+    setSectionGrid("4");
     for (let i = 0; i < convertInput(); i++) {
       generateRandomPokemonCards();
     }
@@ -132,89 +133,16 @@ const generateRandomPokemonCards = () => {
   };
 };
 
-const changeColor = (pokemonType) => {
-  let color = "#FFFFFF";
-  switch (pokemonType) {
-    case "fire":
-      color = "#EE8130";
-      break;
-    case "water":
-      color = "#6390F0";
-      break;
-    case "electric":
-      color = "#F7D02C";
-      break;
-    case "grass":
-      color = "#7AC74C";
-      break;
-    case "ice":
-      color = "#96D9D6";
-      break;
-    case "fighting":
-      color = "#C22E28";
-      break;
-    case "poison":
-      color = "#A33EA1";
-      break;
-    case "ground":
-      color = "#E2BF65";
-      break;
-    case "flying":
-      color = "#A98FF3";
-      break;
-    case "psychic":
-      color = "#F95587";
-      break;
-    case "bug":
-      color = "#A6B91A";
-      break;
-    case "rock":
-      color = "#B6A136";
-      break;
-    case "ghost":
-      color = "#735797";
-      break;
-    case "dragon":
-      color = "#6F35FC";
-      break;
-    case "dark":
-      color = "#705746";
-      break;
-    case "steel":
-      color = "#B7B7CE";
-      break;
-    case "fairy":
-      color = "#D685AD";
-      break;
-    default:
-      color = "#A8A878";
-  }
-  return color;
-};
-
-const upperCase = (string) => {
-  let upperCasedString = "";
-  for (let i = 0; i < string.length; i++) {
-    if (i === 0) {
-      upperCasedString += string[i].toUpperCase();
-    } else {
-      upperCasedString += string[i];
-    }
-  }
-  return upperCasedString;
-};
-
 const displayPokemonCards = () => {
   section.innerHTML = "";
-  for (let index = 1; index < 30; index++) {
+  for (let index = 1; index < 100; index++) {
     generateBtnInputHolder.remove();
-    setSectionGrid();
+    setSectionGrid("3");
     generatePokemonCards(index);
-    if (index === 20) {
+    if (index === 60) {
       break;
     }
   }
-  console.log(section);
 };
 
 const generatePokemonCards = (count) => {
@@ -300,14 +228,99 @@ const generatePokemonCards = (count) => {
   };
 };
 
+const changeColor = (pokemonType) => {
+  let color = "#FFFFFF";
+  switch (pokemonType) {
+    case "fire":
+      color = "#EE8130";
+      break;
+    case "water":
+      color = "#6390F0";
+      break;
+    case "electric":
+      color = "#F7D02C";
+      break;
+    case "grass":
+      color = "#7AC74C";
+      break;
+    case "ice":
+      color = "#96D9D6";
+      break;
+    case "fighting":
+      color = "#C22E28";
+      break;
+    case "poison":
+      color = "#A33EA1";
+      break;
+    case "ground":
+      color = "#E2BF65";
+      break;
+    case "flying":
+      color = "#A98FF3";
+      break;
+    case "psychic":
+      color = "#F95587";
+      break;
+    case "bug":
+      color = "#A6B91A";
+      break;
+    case "rock":
+      color = "#B6A136";
+      break;
+    case "ghost":
+      color = "#735797";
+      break;
+    case "dragon":
+      color = "#6F35FC";
+      break;
+    case "dark":
+      color = "#705746";
+      break;
+    case "steel":
+      color = "#B7B7CE";
+      break;
+    case "fairy":
+      color = "#D685AD";
+      break;
+    default:
+      color = "#A8A878";
+  }
+  return color;
+};
+
+const upperCase = (string) => {
+  let upperCasedString = "";
+  for (let i = 0; i < string.length; i++) {
+    if (i === 0) {
+      upperCasedString += string[i].toUpperCase();
+    } else {
+      upperCasedString += string[i];
+    }
+  }
+  return upperCasedString;
+};
+
+const generateAboutSection = () => {
+  generateBtnInputHolder.remove();
+  section.innerHTML = "";
+  const aboutContainer = document.createElement("div");
+  section.appendChild(aboutContainer);
+  aboutContainer.style.textAlign = "center";
+  const header = document.createElement("h1");
+  header.textContent = "About";
+  aboutContainer.appendChild(header);
+  const text = document.createElement("p");
+  text.textContent =
+    "Pokemon Generator is an appllication that allows you to generate a random pokemon card or the list of all the pokemon using RESTful Pokémon API.";
+  aboutContainer.appendChild(text);
+  section.style.display = "";
+};
+
 generateInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     displayRandomPokemonCards();
   }
 });
-
 generateBtn.addEventListener("click", displayRandomPokemonCards);
 pokemonCardsNavLink.addEventListener("click", displayPokemonCards);
-
-//Create a pokemonCard section - that display the first 100 cards. and has pagination ang has a load more button
-// navigation bar - <a href="">Pokemon Cards</a> => when clicked it renders the Html for the link
+aboutNavLink.addEventListener("click", generateAboutSection);
